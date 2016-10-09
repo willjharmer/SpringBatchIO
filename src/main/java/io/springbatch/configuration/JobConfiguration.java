@@ -26,15 +26,45 @@ public class JobConfiguration {
     public Step step1(){
         return stepBuilderFactory.get("step1")
                 .tasklet((contribution, chunkContext) -> {
-                    System.out.println("Hello world!");
+                    System.out.println(">> this is step1");
                     return RepeatStatus.FINISHED;
                 }).build();
     }
 
     @Bean
-    public Job helloWorldJob(){
-        return jobBuilderFactory.get("helloWorldJob")
+    public Step step2(){
+        return stepBuilderFactory.get("step2")
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println(">> this is step2");
+                    return RepeatStatus.FINISHED;
+                }).build();
+    }
+
+    @Bean
+    public Step step3(){
+        return stepBuilderFactory.get("step3")
+                .tasklet((contribution, chunkContext) -> {
+                    System.out.println(">> this is step3");
+                    return RepeatStatus.FINISHED;
+                }).build();
+    }
+
+    @Bean
+    public Job transitionNextSimpleJob(){
+        return jobBuilderFactory.get("transitionJobNext")
                 .start(step1())
+                .next(step2())
+                .next(step3())
                 .build();
     }
+
+//    @Bean
+//    public Job transitionNextManualJob(){
+//        return jobBuilderFactory.get("transitionJobNext")
+//                .start(step1())
+//                .on("COMPLETE").to(step2())
+//                .from(step2()).on("COMPLETE").to(step3())
+//                .from(step3()).end()
+//                .build();
+//    }
 }
