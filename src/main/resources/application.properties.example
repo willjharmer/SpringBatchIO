@@ -1,0 +1,14 @@
+# This is an example properties file. You need to fill out these details for yourself.
+# and rename the file application.properties
+#
+# spring.datasource.driverClassName=com.mysql.jdbc.Driver
+# spring.datasource.url=jdbc:mysql://192.168.99.100:32770/learning_spring_batch
+# spring.datasource.username=myuser
+# spring.datasource.password=mypassword
+# spring.datasource.schema=schema-mysql.sql
+
+spring.datasource.driverClassName=
+spring.datasource.url=
+spring.datasource.username=
+spring.datasource.password=
+spring.datasource.schema=
